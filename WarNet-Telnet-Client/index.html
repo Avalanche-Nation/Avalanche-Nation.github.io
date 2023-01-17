@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>WarNet Telnet Client</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <link href="divstyles.css" rel="stylesheet" type="text/css" />
+	<link href="config.css" rel="stylesheet" type="text/css" />
+	
+    <script src="jquery.min.js"></script>
+    <script src="angular.min.js"></script>
+
+    <script src="globalvars.js"></script>
+	<script src="extrafunctions.js"></script>
+    <script src="userlist.js"></script>	
+    <script src="channelname.js"></script>
+    <script src="onbnevents.js"></script>
+	<script src="oursocket.js"></script>
+	<script src="sendtextbox.js"></script>
+	<script src="connectbutton.js"></script>
+	<script src="config.js"></script>
+	
+	<script type="text/javascript">
+		function init()
+		{
+			loggedname = username;
+			
+			channeltitle = document.getElementById("main-channel-title");
+			channeltitle.innerText = "";
+			output = document.getElementById("main-chat");
+			btnConnect = document.getElementById("con-button");
+			btnConnect.onclick = function(evt) { OnClick_btnConnect(evt) };
+			btnConnect.defaultValue = "Connect";
+			btnSend = document.getElementById("command-button");
+			btnSend.onclick = function(evt) { OnClick_btnSend(evt) }
+			staticCommandInput = document.getElementById("command-input");
+			staticCommandInput.onkeypress = function(evt) { OnKeyPressed_staticCommandInput(evt) }
+
+			/* init config */
+			initFormData();
+			/* init messages */
+			NotificationMessage('4', "WarNet Telnet Client - v0.1");
+			NotificationMessage('4', "When you hit Disconnect, it may not right away but it will eventually (websocket thing).");
+			NotificationMessage('4', "Button at the top holds the config, aswell as the connect and disconnect.");
+		}
+		window.addEventListener("load", init, false);
+	</script>
+</head>
+    <body>
+
+	
+        <div class="window-location">
+            <div class="main-window">
+                <div class="table">
+                    <div class="table-row">
+                        <div class="table-cell" id="main-apikey">
+                            <input id="apikey" value=""  ng-disabled="connected" type="password"></input>
+                        </div>
+                        <div class="table-cell" id="main-connect-button">
+                            <input class="button-cls" type="button" value="{{ connected ? 'Disconnect' : 'Connect' }}" id="con-button"></input>
+                        </div>
+                    </div>
+                    <div class="table-row">          
+                            <div class="table-cell" id="main-chat">
+                                <ul id="messagelisting" ng-repeat="message in messages track by $index">
+
+                                </ul>                    
+                            </div>
+                            <div class="table-cell" id="main-channel-title">-channel name here-</div>
+                            <div class="table-cell" id="main-userlist">
+                                <ul id="userlisting" ng-repeat="user in users">
+
+                                </ul>
+                            </div>
+                    </div>
+                    <div class="table-row">          
+                        <div class="table-cell" id="main-send-chat">
+                                <input id="command-input" value="" ng-disabled="!connected"></input>
+                        </div>
+                        <div class="table-cell" id="main-send-chat-button">
+                                <input class="button-cls" type="button" value="Send" id="command-button" ng-disabled="!connected"></input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		
+		
+		<h2>Login</h2>
+		<button type="button" class="collapsible" onclick="javascript:myMenu()">Click Here to Enter Your Credentials</button>
+		<div class="dropdbox" id="dropdbox">
+			<form action="javascript:mySubmit()" class="frmconfig" id="frmconfig">
+				<label for="usernamef">Username:</label><br>
+				<input type="text" id="usernamef" name="usernamef"><br>
+				<label for="passwordf">Password:</label><br>
+				<input type="password" id="passwordf" name="passwordf"><br><br>
+				<label for="homef">Home Channel:</label><br>
+				<input type="text" id="homef" name="homef"><br>
+				<label for="serverf">Select Server:</label><br>
+				<select name="serverf" id="serverf">
+					<option value="server1">ash.wserv.org</option>
+					<option value="server2">mtl.wserv.org</option>
+					<option value="server3">kc.wserv.org</option>
+					<option value="server4">la.wserv.org</option>
+				</select><br>
+				<label for="reconnectsf">Reconnects: </label>
+				<input type="checkbox" id="reconnectsf" name="reconnectsf"><br><br>
+				<input type="submit" value="Connect">
+				<input type="button" value="Disconnect" onclick="javascript:myDisconnect()"><br><br>
+			</form>
+		</div>
+	  
+	  
+    </body>
+</html>
