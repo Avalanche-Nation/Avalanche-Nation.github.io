@@ -14,7 +14,7 @@ function UpdateURI() {
 
 function ConnectWebSocket() {
 	UpdateURI();
-	wsock = new WebSocket(webUri, [ 'binary', 'telnet' ]);
+	wsock = new WebSocket(webUri); //, [ 'binary', 'telnet' ]);
 	wsock.binaryType = "arraybuffer";
 	wsock.onopen = function(evt) { onOpen(evt) };
 	wsock.onclose = function(evt) { onClose(evt) };
