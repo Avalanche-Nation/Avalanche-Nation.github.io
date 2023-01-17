@@ -9,7 +9,7 @@ var webUri = "wss://" + host + ":" + port + getreq;
 var inBuff = "";
 
 function UpdateURI() {
-	webUri = "ws://" + host + ":" + port + getreq;
+	webUri = "wss://" + host + ":" + port + getreq;
 }
 
 function ConnectWebSocket() {
