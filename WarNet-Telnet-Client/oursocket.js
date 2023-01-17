@@ -3,13 +3,13 @@
 var host = "kc.wserv.org";
 var port = "64808";
 var getreq = "/init6";
-var webUri = "wss://" + host + ":" + port + getreq;
+var webUri = "ws://" + host + ":" + port + getreq;
 
 /* left over data.. */
 var inBuff = "";
 
 function UpdateURI() {
-	webUri = "wss://" + host + ":" + port + getreq;
+	webUri = "ws://" + host + ":" + port + getreq;
 }
 
 function ConnectWebSocket() {
