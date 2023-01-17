@@ -57,3 +57,4 @@ function onMessage(evt) {
 		onHandleMessage(datachunks[i]); //bnEvent
 	}
 }
+
