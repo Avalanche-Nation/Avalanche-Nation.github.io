@@ -1,7 +1,7 @@
 /* all things WebSocket */
 
 var host = "war.pianka.io";
-var port = "64808";
+var port = "6112";
 var getreq = "/init6";
 var webUri = "wss://" + host + ":" + port + getreq;
 
