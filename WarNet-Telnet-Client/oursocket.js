@@ -1,9 +1,9 @@
 /* all things WebSocket */
 
-var host = "kc.wserv.org";
+var host = "war.pianka.io";
 var port = "64808";
 var getreq = "/init6";
-var webUri = "ws://" + host + ":" + port + getreq;
+var webUri = "wss://" + host + ":" + port + getreq;
 
 /* left over data.. */
 var inBuff = "";
