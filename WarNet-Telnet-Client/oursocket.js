@@ -8,8 +8,9 @@ var webUri = "ws://" + host + ":" + port + getreq;
 /* left over data.. */
 var inBuff = "";
 
+/* ws = http, wss = https GitHub will only allow this if connecting to wss if i remember correctly. */
 function UpdateURI() {
-	webUri = "ws://" + host + ":" + port + getreq;
+	webUri = "wss://" + host + ":" + port + getreq;
 }
 
 function ConnectWebSocket() {
